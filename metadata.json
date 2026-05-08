@@ -1,0 +1,9 @@
+{
+  "name": "Altamap",
+  "description": "Altamap is a modern Christian digital platform for gospel music, short videos, faith-based communities, and shared testimonies.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

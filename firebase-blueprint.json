@@ -1,0 +1,189 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "bio": { "type": "string" },
+        "location": { "type": "string" },
+        "favoriteGenres": { "type": "array", "items": { "type": "string" } },
+        "role": { "type": "string", "enum": ["user", "artist", "admin"] },
+        "isVerified": { "type": "boolean" },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "socialLinks": { 
+          "type": "object",
+          "properties": {
+            "instagram": { "type": "string" },
+            "twitter": { "type": "string" },
+            "facebook": { "type": "string" },
+            "youtube": { "type": "string" }
+          }
+        }
+      },
+      "required": ["uid", "email", "username", "role"]
+    },
+    "Artist": {
+      "title": "Artist",
+      "description": "Artist specific details",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "bannerURL": { "type": "string" },
+        "biography": { "type": "string" },
+        "monthlyListeners": { "type": "integer" },
+        "ministryLinks": { "type": "array", "items": { "type": "string" } },
+        "donationLink": { "type": "string" },
+        "featuredSongId": { "type": "string" }
+      },
+      "required": ["userId"]
+    },
+    "Track": {
+      "title": "Track",
+      "description": "Music track information",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "artistId": { "type": "string" },
+        "artistName": { "type": "string" },
+        "audioURL": { "type": "string" },
+        "coverURL": { "type": "string" },
+        "duration": { "type": "number" },
+        "genre": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "playCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["title", "artistId", "audioURL"]
+    },
+    "Short": {
+      "title": "Short",
+      "description": "Vertical video content",
+      "type": "object",
+      "properties": {
+        "videoURL": { "type": "string" },
+        "creatorId": { "type": "string" },
+        "creatorUsername": { "type": "string" },
+        "caption": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "hashtags": { "type": "array", "items": { "type": "string" } },
+        "thumbnailURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["videoURL", "creatorId"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "Social feed update",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "mediaURL": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["image", "video", "none"] },
+        "bibleVerse": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "content"]
+    },
+    "Confession": {
+      "title": "Confession",
+      "description": "Anonymous confession or prayer request",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string" },
+        "type": { "type": "string", "enum": ["confession", "prayer_request", "testimony"] },
+        "visibility": { "type": "string", "enum": ["public", "private", "anonymous"] },
+        "prayersCount": { "type": "integer" },
+        "supportsCount": { "type": "integer" },
+        "isModerated": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["content", "type"]
+    },
+    "Community": {
+      "title": "Community",
+      "description": "Group chat community",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "coverURL": { "type": "string" },
+        "creatorId": { "type": "string" },
+        "membersCount": { "type": "integer" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "creatorId"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chat message",
+      "type": "object",
+      "properties": {
+        "communityId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderPhoto": { "type": "string" },
+        "text": { "type": "string" },
+        "mediaURL": { "type": "string" },
+        "type": { "type": "string", "enum": ["text", "image", "audio"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["communityId", "senderId", "text"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Content report",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "contentId": { "type": "string" },
+        "contentType": { "type": "string", "enum": ["post", "track", "short", "confession", "comment"] },
+        "reason": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "resolved", "dismissed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "contentId", "contentType", "reason", "status"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial transaction",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "amount": { "type": "number" },
+        "type": { "type": "string", "enum": ["donation", "subscription"] },
+        "status": { "type": "string", "enum": ["completed", "pending"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "receiverId", "amount", "type", "status"]
+    }
+  },
+  "firestore": {
+    "users": { "schema": "User", "description": "User profiles" },
+    "artists": { "schema": "Artist", "description": "Artist profiles" },
+    "tracks": { "schema": "Track", "description": "Gospel music catalog" },
+    "shorts": { "schema": "Short", "description": "Vertical video clips" },
+    "posts": { "schema": "Post", "description": "Social feed posts" },
+    "confessions": { "schema": "Confession", "description": "Anonymous confessions and testimonies" },
+    "communities": { "schema": "Community", "description": "Faith communities" },
+    "communities/{communityId}/messages": { "schema": "Message", "description": "Community chat messages" },
+    "reports": { "schema": "Report", "description": "User content reports" },
+    "transactions": { "schema": "Transaction", "description": "Donations and subscriptions" }
+  }
+}
