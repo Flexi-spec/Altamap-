@@ -68,4 +68,20 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* === Hide Lovable "Edit with Lovable" Badge === */
+  #lovable-badge,
+  [data-lovable-badge],
+  .lovable-badge {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
 }
