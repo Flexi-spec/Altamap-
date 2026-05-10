@@ -61,27 +61,20 @@
     @apply bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 bg-clip-text text-transparent;
   }
   
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* === Hide Lovable "Edit with Lovable" Badge === */
-  #lovable-badge,
-  [data-lovable-badge],
-  .lovable-badge {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
+/* === STRONGER Lovable Badge Hiding === */
+#lovable-badge,
+div#lovable-badge,
+[data-lovable-badge],
+.lovable-badge,
+a[aria-label*="Lovable"],
+a[href*="lovable.dev"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -999999 !important;
+  pointer-events: none !important;
 }
